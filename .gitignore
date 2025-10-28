@@ -1,0 +1,16 @@
+# Ignore Python virtual environments
+venv/
+python-infer/venv/
+__pycache__/
+*.pyc
+
+# Ignore model and cache directories
+*.pt
+*.pth
+*.onnx
+.huggingface/
+.cache/
+
+# Ignore local OS files
+.DS_Store
+Thumbs.db
