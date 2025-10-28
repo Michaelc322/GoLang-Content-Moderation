@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package moderation.v1;
+
+option go_package = "github.com/Michaelc322/GoLang-Content-Moderation/go-gateway/pb;pb";
+
+// Text
+message TextRequest {
+  string text = 1;
+  string request_id = 2; // for tracing
+  string version = 3;    // model version hint
+}
+
+message TextResponse {
+  double toxicity_score = 1;
+  bool flagged = 2;
+  string model_version = 3;
+}
+
+// Image (bytes for simplicity)
+message ImageRequest {
+  bytes image_bytes = 1;
+  string request_id = 2;
+  string version = 3;
+}
+
+message ImageResponse {
+  double nsfw_score = 1;
+  bool flagged = 2;
+  string model_version = 3;
+}
+
+service ModerationService {
+  rpc PredictText(TextRequest) returns (TextResponse);
+  rpc PredictImage(ImageRequest) returns (ImageResponse);
+}
